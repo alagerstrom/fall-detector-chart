@@ -48,9 +48,10 @@ public class Fall {
         ALARM(0),
         FALL(1),
         JUMP(2),
-        RUN(3),
-        WALK(4),
-        OTHER(5);
+        RUN_OR_WALK(3),
+        SIT_OR_LIE_DOWN(4),
+        HIT_DEVICE(5),
+        OTHER(6);
 
         private int numValue;
 
