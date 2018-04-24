@@ -24,21 +24,43 @@ public class Fall {
 
     private List<Double> data;
     private MyDate date;
+
     private String impactStart;
     private String impactEnd;
     private String impactDuration;
     private String averageAcceleration;
+
+    private String impactPeakValue;
+    private String impactPeakDuration;
+
+    private String longestValleyValue;
+    private String longestValleyDuration;
+
+    private String numberOfPeaksPriorToImpact;
+    private String numberOfValleysPriorToImpact;
+
+
     private String operatingSystem;
     private String device;
     private ClassificationType classificationType;
 
     public enum ClassificationType {
-        ALARM,
-        FALL,
-        JUMP,
-        RUN,
-        WALK,
-        OTHER
+        ALARM(0),
+        FALL(1),
+        JUMP(2),
+        RUN(3),
+        WALK(4),
+        OTHER(5);
+
+        private int numValue;
+
+        ClassificationType(int numValue) {
+            this.numValue = numValue;
+        }
+
+        public int getNumValue() {
+            return numValue;
+        }
     }
 
     public List<Double> getData() {
@@ -87,6 +109,54 @@ public class Fall {
 
     public void setAverageAcceleration(String averageAcceleration) {
         this.averageAcceleration = averageAcceleration;
+    }
+
+    public String getImpactPeakValue() {
+        return impactPeakValue;
+    }
+
+    public void setImpactPeakValue(String impactPeakValue) {
+        this.impactPeakValue = impactPeakValue;
+    }
+
+    public String getImpactPeakDuration() {
+        return impactPeakDuration;
+    }
+
+    public void setImpactPeakDuration(String impactPeakDuration) {
+        this.impactPeakDuration = impactPeakDuration;
+    }
+
+    public String getLongestValleyValue() {
+        return longestValleyValue;
+    }
+
+    public void setLongestValleyValue(String longestValleyValue) {
+        this.longestValleyValue = longestValleyValue;
+    }
+
+    public String getLongestValleyDuration() {
+        return longestValleyDuration;
+    }
+
+    public void setLongestValleyDuration(String longestValleyDuration) {
+        this.longestValleyDuration = longestValleyDuration;
+    }
+
+    public String getNumberOfPeaksPriorToImpact() {
+        return numberOfPeaksPriorToImpact;
+    }
+
+    public void setNumberOfPeaksPriorToImpact(String numberOfPeaksPriorToImpact) {
+        this.numberOfPeaksPriorToImpact = numberOfPeaksPriorToImpact;
+    }
+
+    public String getNumberOfValleysPriorToImpact() {
+        return numberOfValleysPriorToImpact;
+    }
+
+    public void setNumberOfValleysPriorToImpact(String numberOfValleysPriorToImpact) {
+        this.numberOfValleysPriorToImpact = numberOfValleysPriorToImpact;
     }
 
     public String getOperatingSystem() {
