@@ -26,32 +26,47 @@ public class CSVGenerator {
 
     private static void printToFile(List<Fall> falls, String fileName) {
 
-        String[] heders = {"Impact_Start", "Impact_End", "Avarage_Acceleration", "Impact_Duration",
+        String[] headers = {"Impact_Start", "Impact_End", "Average_Acceleration", "Impact_Duration",
                 "Impact_Peak_Value", "Impact_Peak_Duration", "Longest_Valley_Value",
                 "Longest_Valley_Duration", "Num_Peaks_Prior_To_Impact", "Num_Valleys_Prior_To_Impact", "Class", "Class_Number"};
 
         try (BufferedWriter reader = Files.newBufferedWriter(Paths.get(fileName + ".csv"));
-             CSVPrinter printer = new CSVPrinter(reader, CSVFormat.DEFAULT.withHeader(heders))) {
+             CSVPrinter printer = new CSVPrinter(reader, CSVFormat.DEFAULT.withHeader(headers))) {
 
             for (Fall fall : falls) {
-                printer.printRecord(
-                        fall.getImpactStart(),
-                        fall.getImpactEnd(),
-                        fall.getAverageAcceleration(),
-                        fall.getImpactDuration(),
-                        fall.getImpactPeakValue(),
-                        fall.getImpactPeakDuration(),
-                        fall.getLongestValleyValue(),
-                        fall.getLongestValleyDuration(),
-                        fall.getNumberOfPeaksPriorToImpact(),
-                        fall.getNumberOfValleysPriorToImpact(),
-                        fall.getClassificationType().name(),
-                        fall.getClassificationType().getNumValue());
+                if (isValidFall(fall))
+                    printer.printRecord(
+                            fall.getImpactStart(),
+                            fall.getImpactEnd(),
+                            fall.getAverageAcceleration(),
+                            fall.getImpactDuration(),
+                            fall.getImpactPeakValue(),
+                            fall.getImpactPeakDuration(),
+                            fall.getLongestValleyValue(),
+                            fall.getLongestValleyDuration(),
+                            fall.getNumberOfPeaksPriorToImpact(),
+                            fall.getNumberOfValleysPriorToImpact(),
+                            fall.getClassificationType().name(),
+                            fall.getClassificationType().getNumValue());
             }
 
             printer.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static boolean isValidFall(Fall fall) {
+        return fall.getImpactStart() != null &&
+                fall.getImpactEnd() != null &&
+                fall.getAverageAcceleration() != null &&
+                fall.getImpactDuration() != null &&
+                fall.getImpactPeakValue() != null &&
+                fall.getImpactPeakDuration() != null &&
+                fall.getLongestValleyValue() != null &&
+                fall.getLongestValleyDuration() != null &&
+                fall.getNumberOfPeaksPriorToImpact() != null &&
+                fall.getNumberOfValleysPriorToImpact() != null &&
+                fall.getClassificationType() != null;
     }
 }

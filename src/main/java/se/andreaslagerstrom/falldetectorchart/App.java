@@ -123,30 +123,30 @@ public class App extends Application {
             if (fall.getData() != null) {
                 Tab tab = new Tab("Fall " + index++);
                 VBox vBox = new VBox();
-                vBox.setAlignment(Pos.TOP_CENTER);
-                vBox.getChildren().add(new Label("Device: " + fall.getDevice()));
-                vBox.getChildren().add(new Label("Operating system: " + fall.getOperatingSystem()));
+                vBox.setAlignment(Pos.CENTER);
+                VBox leftBox = new VBox();
+                VBox rightBox = new VBox();
+                HBox hBox = new HBox();
+                hBox.setAlignment(Pos.TOP_CENTER);
+                vBox.getChildren().add(hBox);
+                hBox.getChildren().add(leftBox);
+                hBox.getChildren().add(rightBox);
+                addLabel(leftBox, rightBox, "Device: ", fall.getDevice());
+                addLabel(leftBox, rightBox, "Operating system: ", fall.getOperatingSystem());
                 if (fall.getDate() != null)
-                    vBox.getChildren().add(new Label(fall.getDate().getIso()));
-                vBox.getChildren().add(new Label("Impact start: " + fall.getImpactStart()));
-                vBox.getChildren().add(new Label("Impact end: " + fall.getImpactEnd()));
-                vBox.getChildren().add(new Label("Average acceleration: " + fall.getAverageAcceleration()));
-                vBox.getChildren().add(new Label("Impact duration: " + fall.getImpactDuration()));
-                vBox.getChildren().add(new Label("Impact peak value: " + fall.getImpactPeakValue()));
-                vBox.getChildren().add(new Label("Impact peak duration: " + fall.getImpactPeakDuration()));
-                vBox.getChildren().add(new Label("Longest valley value: " + fall.getLongestValleyValue()));
-                vBox.getChildren().add(new Label("Longest valley duration: " + fall.getLongestValleyDuration()));
-                vBox.getChildren().add(new Label("Number of peaks prior to impact: " + fall.getNumberOfPeaksPriorToImpact()));
-                vBox.getChildren().add(new Label("Number of valleys prior to impact: " + fall.getNumberOfValleysPriorToImpact()));
-                vBox.getChildren().add(new Label("Classification type: " + fall.getClassificationType()));
-                vBox.getChildren().add(new Label("Classification number: " + fall.getClassificationType().getNumValue()));
-
-
-
-
-
-
-
+                    addLabel(leftBox, rightBox, "Date: ", fall.getDate().getIso());
+                addLabel(leftBox, rightBox, "Impact start: ", fall.getImpactStart());
+                addLabel(leftBox, rightBox, "Impact end: ", fall.getImpactEnd());
+                addLabel(leftBox, rightBox, "Average acceleration: ", fall.getAverageAcceleration());
+                addLabel(leftBox, rightBox, "Impact duration: ", fall.getImpactDuration());
+                addLabel(leftBox, rightBox, "Impact peak value: ", fall.getImpactPeakValue());
+                addLabel(leftBox, rightBox, "Impact peak duration: ", fall.getImpactPeakDuration());
+                addLabel(leftBox, rightBox, "Longest valley value: ", fall.getLongestValleyValue());
+                addLabel(leftBox, rightBox, "Longest valley duration: ", fall.getLongestValleyDuration());
+                addLabel(leftBox, rightBox, "Number of peaks prior to impact: ", fall.getNumberOfPeaksPriorToImpact());
+                addLabel(leftBox, rightBox, "Number of valleys prior to impact: ", fall.getNumberOfValleysPriorToImpact());
+                addLabel(leftBox, rightBox, "Classification type: ", fall.getClassificationType().name());
+                addLabel(leftBox, rightBox, "Classification number: ", "" + fall.getClassificationType().getNumValue());
 
                 LineChart lineChart = buildGraph(fall);
                 lineChart.setPrefHeight(1000);
@@ -155,6 +155,11 @@ public class App extends Application {
                 tabPane.getTabs().add(tab);
             }
         }
+    }
+
+    private void addLabel(VBox leftBox, VBox rightBox, String property, String value) {
+        leftBox.getChildren().add(new Label(property));
+        rightBox.getChildren().add(new Label(value));
     }
 
     @SuppressWarnings("unchecked")
