@@ -1,11 +1,7 @@
 package se.andreaslagerstrom.falldetectorchart;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -16,11 +12,13 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class App extends Application {
@@ -42,6 +40,7 @@ public class App extends Application {
         Button sortByTypeButton = new Button("Sort by classification type");
         Button sortByOsButton = new Button("Sort by OS");
         Button showAverageFall = new Button("Show average fall");
+        Button generateCsvButton = new Button("Generate CSV file");
 
         showAverageFall.setOnAction(event -> {
 
@@ -62,7 +61,7 @@ public class App extends Application {
             }
 
             List<Double> dataList = new ArrayList<>();
-            for (Double d : data){
+            for (Double d : data) {
                 dataList.add(d);
             }
 
@@ -84,9 +83,17 @@ public class App extends Application {
             falls.sort(Comparator.comparing(o -> o.getDate().getIso()));
             recreateTabs();
         });
+
         sortByTypeButton.setOnAction(event -> {
             falls.sort(Comparator.comparing(Fall::getClassificationType));
             recreateTabs();
+        });
+
+        generateCsvButton.setOnAction(event -> {
+            DirectoryChooser chooser = new DirectoryChooser();
+            File dir = chooser.showDialog(null);
+            if (dir != null)
+                CSVGenerator.generateCsv(falls, dir);
         });
 
         menuBox.getChildren().add(refreshButton);
@@ -94,6 +101,7 @@ public class App extends Application {
         menuBox.getChildren().add(sortByTypeButton);
         menuBox.getChildren().add(sortByOsButton);
         menuBox.getChildren().add(showAverageFall);
+        menuBox.getChildren().add(generateCsvButton);
         topBox.getChildren().add(menuBox);
 
         refreshButton.setOnAction(event -> {
@@ -116,8 +124,8 @@ public class App extends Application {
                 Tab tab = new Tab("Fall " + index++);
                 VBox vBox = new VBox();
                 vBox.setAlignment(Pos.TOP_CENTER);
-                vBox.getChildren().add(new Label(fall.getOperatingSystem()));
-                vBox.getChildren().add(new Label(fall.getDevice()));
+                vBox.getChildren().add(new Label("Device:" + fall.getDevice()));
+                vBox.getChildren().add(new Label("Operating system:" + fall.getOperatingSystem()));
                 if (fall.getDate() != null)
                     vBox.getChildren().add(new Label(fall.getDate().getIso()));
                 vBox.getChildren().add(new Label("Type: " + fall.getClassificationType()));
