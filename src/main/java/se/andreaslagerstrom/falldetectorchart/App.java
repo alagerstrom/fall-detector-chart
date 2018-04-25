@@ -124,15 +124,29 @@ public class App extends Application {
                 Tab tab = new Tab("Fall " + index++);
                 VBox vBox = new VBox();
                 vBox.setAlignment(Pos.TOP_CENTER);
-                vBox.getChildren().add(new Label("Device:" + fall.getDevice()));
-                vBox.getChildren().add(new Label("Operating system:" + fall.getOperatingSystem()));
+                vBox.getChildren().add(new Label("Device: " + fall.getDevice()));
+                vBox.getChildren().add(new Label("Operating system: " + fall.getOperatingSystem()));
                 if (fall.getDate() != null)
                     vBox.getChildren().add(new Label(fall.getDate().getIso()));
-                vBox.getChildren().add(new Label("Type: " + fall.getClassificationType()));
                 vBox.getChildren().add(new Label("Impact start: " + fall.getImpactStart()));
                 vBox.getChildren().add(new Label("Impact end: " + fall.getImpactEnd()));
-                vBox.getChildren().add(new Label("Impact duration: " + fall.getImpactDuration()));
                 vBox.getChildren().add(new Label("Average acceleration: " + fall.getAverageAcceleration()));
+                vBox.getChildren().add(new Label("Impact duration: " + fall.getImpactDuration()));
+                vBox.getChildren().add(new Label("Impact peak value: " + fall.getImpactPeakValue()));
+                vBox.getChildren().add(new Label("Impact peak duration: " + fall.getImpactPeakDuration()));
+                vBox.getChildren().add(new Label("Longest valley value: " + fall.getLongestValleyValue()));
+                vBox.getChildren().add(new Label("Longest valley duration: " + fall.getLongestValleyDuration()));
+                vBox.getChildren().add(new Label("Number of peaks prior to impact: " + fall.getNumberOfPeaksPriorToImpact()));
+                vBox.getChildren().add(new Label("Number of valleys prior to impact: " + fall.getNumberOfValleysPriorToImpact()));
+                vBox.getChildren().add(new Label("Classification type: " + fall.getClassificationType()));
+                vBox.getChildren().add(new Label("Classification number: " + fall.getClassificationType().getNumValue()));
+
+
+
+
+
+
+
 
                 LineChart lineChart = buildGraph(fall);
                 lineChart.setPrefHeight(1000);
