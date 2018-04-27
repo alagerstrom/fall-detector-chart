@@ -43,13 +43,9 @@ public class Fall {
     private ClassificationType classificationType;
 
     public enum ClassificationType {
-        ALARM(0),
-        FALL(1),
-        JUMP(2),
-        RUN_OR_WALK(3),
-        SIT_OR_LIE_DOWN(4),
-        HIT_DEVICE(5),
-        OTHER(6);
+        FALL(0),
+        JUMP(1),
+        RUN_OR_WALK(2);
 
         private int numValue;
 

@@ -46,7 +46,6 @@ public class CSVGenerator {
                             fall.getLongestValleyDuration(),
                             fall.getNumberOfPeaksPriorToImpact(),
                             fall.getNumberOfValleysPriorToImpact(),
-                            fall.getClassificationType().name(),
                             fall.getClassificationType().getNumValue());
             }
 
