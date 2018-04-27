@@ -22,6 +22,10 @@ import java.util.List;
 
 public class App extends Application {
 
+    private static final double IOS_IMPACT_THRESHOLD = 3.5;
+    private static final double ANDROID_IMPACT_THRESHOLD = 2.5;
+
+
     private TabPane tabPane = new TabPane();
     private List<Fall> falls = new RequestHandler().makeRequest().getBody().getResults();
 
@@ -172,16 +176,22 @@ public class App extends Application {
 
         //defining a series
 
-        XYChart.Series impactThreshold = new XYChart.Series<>();
+        XYChart.Series androidImpactThreshold = new XYChart.Series<>();
+        XYChart.Series iosImpactThreshold = new XYChart.Series<>();
+
         XYChart.Series upperMotionlessThreshold = new XYChart.Series<>();
         XYChart.Series lowerMotionlessThreshold = new XYChart.Series<>();
 
-        impactThreshold.setName("Impact threshold");
+        androidImpactThreshold.setName("Android impact threshold");
+        iosImpactThreshold.setName("iOS impact threshold");
+
         upperMotionlessThreshold.setName("Upper motionless threshold");
         lowerMotionlessThreshold.setName("Lower motionless threshold");
 
-        impactThreshold.getData().add(new XYChart.Data<>(0, 3));
-        impactThreshold.getData().add(new XYChart.Data<>(8500, 3));
+        androidImpactThreshold.getData().add(new XYChart.Data<>(0, ANDROID_IMPACT_THRESHOLD));
+        androidImpactThreshold.getData().add(new XYChart.Data<>(8500, ANDROID_IMPACT_THRESHOLD));
+        iosImpactThreshold.getData().add(new XYChart.Data<>(0, IOS_IMPACT_THRESHOLD));
+        iosImpactThreshold.getData().add(new XYChart.Data<>(8500, IOS_IMPACT_THRESHOLD));
         upperMotionlessThreshold.getData().add(new XYChart.Data<>(0, 1.8));
         upperMotionlessThreshold.getData().add(new XYChart.Data<>(8500, 1.8));
         lowerMotionlessThreshold.getData().add(new XYChart.Data<>(0, 0.3));
@@ -196,7 +206,9 @@ public class App extends Application {
             i++;
         }
         lineChart.getData().add(series);
-        lineChart.getData().add(impactThreshold);
+        lineChart.getData().add(androidImpactThreshold);
+        lineChart.getData().add(iosImpactThreshold);
+
         lineChart.getData().add(upperMotionlessThreshold);
         lineChart.getData().add(lowerMotionlessThreshold);
         return lineChart;
