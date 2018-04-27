@@ -1,9 +1,7 @@
 package se.andreaslagerstrom.falldetectorchart;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -28,7 +26,7 @@ public class Fall {
     private String impactStart;
     private String impactEnd;
     private String impactDuration;
-    private String averageAcceleration;
+    private String averageAccelerationVariation;
 
     private String impactPeakValue;
     private String impactPeakDuration;
@@ -104,12 +102,12 @@ public class Fall {
         this.impactDuration = impactDuration;
     }
 
-    public String getAverageAcceleration() {
-        return averageAcceleration;
+    public String getAverageAccelerationVariation() {
+        return averageAccelerationVariation;
     }
 
-    public void setAverageAcceleration(String averageAcceleration) {
-        this.averageAcceleration = averageAcceleration;
+    public void setAverageAccelerationVariation(String averageAccelerationVariation) {
+        this.averageAccelerationVariation = averageAccelerationVariation;
     }
 
     public String getImpactPeakValue() {

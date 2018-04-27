@@ -38,7 +38,7 @@ public class CSVGenerator {
                     printer.printRecord(
                             fall.getImpactStart(),
                             fall.getImpactEnd(),
-                            fall.getAverageAcceleration(),
+                            fall.getAverageAccelerationVariation(),
                             fall.getImpactDuration(),
                             fall.getImpactPeakValue(),
                             fall.getImpactPeakDuration(),
@@ -59,7 +59,7 @@ public class CSVGenerator {
     private static boolean isValidFall(Fall fall) {
         return fall.getImpactStart() != null &&
                 fall.getImpactEnd() != null &&
-                fall.getAverageAcceleration() != null &&
+                fall.getAverageAccelerationVariation() != null &&
                 fall.getImpactDuration() != null &&
                 fall.getImpactPeakValue() != null &&
                 fall.getImpactPeakDuration() != null &&

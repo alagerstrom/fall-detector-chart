@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public class App extends Application {
@@ -137,7 +136,7 @@ public class App extends Application {
                     addLabel(leftBox, rightBox, "Date: ", fall.getDate().getIso());
                 addLabel(leftBox, rightBox, "Impact start: ", fall.getImpactStart());
                 addLabel(leftBox, rightBox, "Impact end: ", fall.getImpactEnd());
-                addLabel(leftBox, rightBox, "Average acceleration: ", fall.getAverageAcceleration());
+                addLabel(leftBox, rightBox, "Average acceleration: ", fall.getAverageAccelerationVariation());
                 addLabel(leftBox, rightBox, "Impact duration: ", fall.getImpactDuration());
                 addLabel(leftBox, rightBox, "Impact peak value: ", fall.getImpactPeakValue());
                 addLabel(leftBox, rightBox, "Impact peak duration: ", fall.getImpactPeakDuration());
