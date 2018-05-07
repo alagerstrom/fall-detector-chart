@@ -6,6 +6,18 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Fall {
+    public String getImpactStart() {
+        return impactStart;
+    }
+
+    public String getImpactEnd() {
+        return impactEnd;
+    }
+
+    public void setData(List<Double> data) {
+        this.data = data;
+    }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     public class MyDate{
         private String iso;
@@ -61,9 +73,8 @@ public class Fall {
     public List<Double> getData() {
         return data;
     }
-
-    public void setData(List<Double> data) {
-        this.data = data;
+    public void setImpactStart(String impactStart) {
+        this.impactStart = impactStart;
     }
 
     public MyDate getDate() {
@@ -72,18 +83,6 @@ public class Fall {
 
     public void setDate(MyDate date) {
         this.date = date;
-    }
-
-    public String getImpactStart() {
-        return impactStart;
-    }
-
-    public void setImpactStart(String impactStart) {
-        this.impactStart = impactStart;
-    }
-
-    public String getImpactEnd() {
-        return impactEnd;
     }
 
     public void setImpactEnd(String impactEnd) {
